@@ -3,16 +3,17 @@ from __future__ import print_function
 import urllib
 import psycopg2
 import boto3
+import os
 
 s3 = boto3.client('s3')
 iam_role = "IAM ROLE ARN that Redshift has assigned"
-db_database = "Redshift DB Name"
-db_user = "Redshift User"
-db_password = "Redshift Password"
+db_database = os.environ['DB_NAME']
+db_user = os.environ['DB_USER']
+db_password = os.environ['DB_PASSWORD']
 db_port = "5439"
-db_host = "Redshift Host"
-query_bucket = "YOUR BUCKET NAME"
-query_prefix = "ANY PREFIX FOR FILES IN BUCKET"
+db_host = os.environ['DB_HOST']
+query_bucket = os.environ['S3_BUCKET']
+query_prefix = os.environ['FILE_PREFIX']
 
 
 def handler(event, context):
